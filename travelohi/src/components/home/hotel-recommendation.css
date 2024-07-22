@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 2rem;
+}
+
+.location{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    color: #6bb0f5;
+}
+
+.rate-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #067ad4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 99em 0 0 99em;
+    display: flex;
+    align-items: center;
+    padding: 0.5em 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #425475;
+    margin: 0.5rem 0;
+    color: white;
+}
+
+.price{
+    color: #e12c2d;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 2rem 1rem;
+}
+
+.grid-item {
+    position: relative;
+    /* background-color: cyan; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.img {
+    width: 100%;
+    height: 14rem;
+}

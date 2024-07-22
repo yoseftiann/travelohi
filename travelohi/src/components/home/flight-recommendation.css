@@ -1,0 +1,52 @@
+.container-flight {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    align-items: center;
+    margin: 2rem 0;
+    gap: 2rem;
+}
+
+.flex-flight{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+
+.flex-item-flight{
+    display: flex;
+    flex-direction: column;
+}
+
+.img-flight{
+    width: 100%;
+    height: 18rem;
+    position: relative;
+}
+
+.text-overlay-big{
+    font-weight: 600;
+}
+
+.text-overlay-small{
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.text-overlay-container{
+    position: absolute;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    z-index: 2;
+    bottom: 0px;
+    margin: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}

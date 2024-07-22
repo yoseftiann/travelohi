@@ -1,0 +1,337 @@
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  models.Facility:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      hotels:
+        items:
+          $ref: '#/definitions/models.Hotel'
+        type: array
+      id:
+        type: integer
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.Hotel:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      facilities:
+        items:
+          $ref: '#/definitions/models.Facility'
+        type: array
+      id:
+        type: integer
+      image:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      rating:
+        type: number
+      reviews:
+        items:
+          $ref: '#/definitions/models.HotelReview'
+        type: array
+      room:
+        items:
+          $ref: '#/definitions/models.Room'
+        type: array
+      stars:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  models.HotelReview:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      hotels:
+        items:
+          $ref: '#/definitions/models.Hotel'
+        type: array
+      id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: number
+      updatedAt:
+        type: string
+    type: object
+  models.Room:
+    properties:
+      availabilities:
+        items:
+          $ref: '#/definitions/models.RoomAvailability'
+        type: array
+      capacity:
+        type: integer
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      hotel:
+        $ref: '#/definitions/models.Hotel'
+      hotelID:
+        type: integer
+      id:
+        type: integer
+      image:
+        type: string
+      price:
+        type: number
+      roomFacilities:
+        items:
+          $ref: '#/definitions/models.RoomFacility'
+        type: array
+      type:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.RoomAvailability:
+    properties:
+      createdAt:
+        type: string
+      date:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: integer
+      isAvailable:
+        type: boolean
+      room:
+        $ref: '#/definitions/models.Room'
+      roomID:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  models.RoomFacility:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      rooms:
+        items:
+          $ref: '#/definitions/models.Room'
+        type: array
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /cart/remove:
+    delete:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Removes a cart by its ID provided in the form data.
+      parameters:
+      - description: Cart ID
+        in: formData
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'message: Cart removed successfully'
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: 'error: Invalid cart ID format'
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: 'message: Cart not found'
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: 'error: Failed to remove cart'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Remove a cart
+      tags:
+      - cart
+  /fetch-hotels:
+    get:
+      consumes:
+      - application/json
+      description: Gets a list of all the hotels available in the database.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Hotel'
+            type: array
+        "500":
+          description: 'Error: Failed to retrieve hotels'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Retrieves all hotels
+      tags:
+      - hotels
+  /hotel/room/create:
+    put:
+      consumes:
+      - multipart/form-data
+      description: Adds a new room to a hotel with provided details such as type,
+        price, capacity, hotel ID, facilities, and an image.
+      parameters:
+      - description: Type of the room
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: Price of the room
+        in: formData
+        name: price
+        required: true
+        type: string
+      - description: Capacity of the room
+        in: formData
+        name: capacity
+        required: true
+        type: string
+      - description: Hotel ID the room belongs to
+        in: formData
+        name: hotel_id
+        required: true
+        type: string
+      - description: JSON array of facility names
+        in: formData
+        name: facilities
+        required: true
+        type: string
+      - description: Image of the room
+        in: formData
+        name: image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'status: Room created successfully'
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: 'error: One or more required fields are empty / Invalid price
+            format / Invalid capacity format / Invalid hotel ID format / Failed to
+            parse facilities / Error while parsing image'
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: 'error: Hotel not found'
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: 'error: Failed to create room directory / Failed to save image
+            file / Failed to create new room'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add a new room
+      tags:
+      - rooms
+  /promo/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Adds a new promotional code with details including type, discount,
+        code, expiry, and image.
+      parameters:
+      - description: Type of the promo
+        in: formData
+        name: type
+        required: true
+        type: string
+      - description: Discount percentage
+        in: formData
+        name: discount
+        required: true
+        type: integer
+      - description: Unique code for the promo
+        in: formData
+        name: code
+        required: true
+        type: string
+      - description: Expiry date of the promo
+        in: formData
+        name: expiry
+        required: true
+        type: string
+      - description: Image associated with the promo
+        in: formData
+        name: image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'success: {}'
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: 'error: Invalid discount value / Invalid expiry date format
+            / Promo with this RedeemCode already exists / Error while parsing / Failed
+            to save file'
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: 'error: Failed to create new promo'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Add new promo code
+      tags:
+      - promo
+swagger: "2.0"

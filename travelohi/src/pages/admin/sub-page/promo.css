@@ -1,0 +1,135 @@
+.promo-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    height: 100%;
+}
+
+.promo-container .promo-card.small{
+  height: 30%;
+  flex-shrink: 0;
+}
+
+.promo-container .promo-card {
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.1));
+    padding: 2rem 2rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.promo-container .promo-card .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.promo-card .header span{
+    letter-spacing: 0.5rem;
+}
+
+.promo-container .promo-card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 6px; /* Match the border-radius of the container */
+    object-fit: cover; /* Cover the area without distorting the image */
+    z-index: -1;
+}
+
+.promo-container .input {
+    border: 2px solid transparent;
+    width: 50%;
+    height: 2em;
+    padding-left: 0.8em;
+    outline: none;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.promo-container .input:hover,
+.promo-container .input:focus {
+    border: 2px solid #add0f1;
+    box-shadow: 0px 0px 0px 7px rgba(190, 212, 233, 0.2);
+    background-color: white;
+}
+
+.promo-container .fields{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+}
+
+.promo-container button {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .promo-container button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  .promo-container button:active {
+    transform: translateY(-1px);
+  }
+
+  .promo-card span{
+    font-size: 0.75rem;
+  }
+
+  .promo-card .header span{
+    font-size: 1rem;
+  }
+
+  .promo-card h1{
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+
+  .promo-card .expirydate{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .promo-container .promo-card .file-input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    outline: none;
+  }
+
+  .summary h1#large-title{
+    margin-bottom: 1rem;
+  }
+
+  .summary .label-input p#shipment{
+    color: #727b83;
+  }

@@ -1,0 +1,39 @@
+.overlayStyle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalStyle {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    max-width: 100%;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.closeButtonStyle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1002;
+    color: whitesmoke;
+    padding: 2rem;
+}
+
+.date-group-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 1rem;
+}
+

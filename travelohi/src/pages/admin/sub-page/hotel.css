@@ -1,0 +1,68 @@
+.hotel-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    height: 100%;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+
+.hotel-container .hotel-room-page-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.hotel-container h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    color: white;
+}
+
+.hotel-container .facilities-group {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.hotel-container button {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.hotel-container button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.hotel-container button:active {
+    transform: translateY(-1px);
+}
+
+.room-action-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.overlay-reactive{
+    opacity: 0;
+}
